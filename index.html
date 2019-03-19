@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <title>Basanta</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <div class="container ">
+        <div class="card forms">
+            <img src="images/islington.png" class="card-img-top logo" height="50" width="50" />
+            <div class="card-body">
+                <form id="formLogin">
+
+                    <div class="row">
+                        <label class="centeralign control-label">
+                            Username
+                        </label>
+                        <input class="centeralign form-control" name="email" type="text" />
+                    </div>
+                    <div class="row">
+                        <label class="centeralign control-label">
+                            Password
+                        </label>
+                        <input class="centeralign form-control" name="password" type="password" />
+                    </div>
+
+                    <div class="row" style="margin-top:5%;">
+                        <button class="btn btn-primary centerContent" id="btnLogin">Login</button>
+                        <button class="btn btn-danger centerContent" type="reset">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        $("#btnLogin").on("click", function () {
+            var formdata = $("#formLogin").serialize().JSON;
+            //ajax call here
+            $.ajax({
+                url: "http://localhost:8080/api/user/login",
+                type: "POST",
+                data: formdata
+            }).done(function (data) {
+                alert(JSON.stringify(data))
+            }).fail(function (err) {
+                alert("Error " + JSON.stringify(err));
+            });
+
+        });
+
+    });
+</script>
+
+</html>
