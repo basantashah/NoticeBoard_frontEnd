@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="row" style="margin-top:5%;">
-                        <button class="btn btn-primary centerContent" id="btnLogin">Login</button>
+                        <button class="btn btn-primary centerContent" type="button" id="btnLogin">Login</button>
                         <button class="btn btn-danger centerContent" type="reset">Reset</button>
                     </div>
                 </form>
@@ -38,16 +38,39 @@
     </div>
 </body>
 <script>
+    $.fn.serializeObject = function () {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
     $(document).ready(function () {
         $("#btnLogin").on("click", function () {
-            var formdata = $("#formLogin").serialize().JSON;
+            //var formdata = JSON.stringify($("#formLogin").serializeArray());
+            var formdata = $("#formLogin").serializeObject();
+            //alert(JSON.stringify(formdata));
             //ajax call here
             $.ajax({
-                url: "http://localhost:8080/api/user/login",
+                url: "http://localhost:8000/api/user/login",
                 type: "POST",
-                data: formdata
-            }).done(function (data) {
-                alert(JSON.stringify(data))
+                dataType: 'json',
+                data: JSON.stringify(formdata)
+
+            }).done(function (data, e) {
+                //var dat = JSON.parse(data);
+                if (data.status == true) {
+                    window.localStorage.setItem("notice_token", data.account.token);
+                    window.location = "loggedin.html";
+                }
             }).fail(function (err) {
                 alert("Error " + JSON.stringify(err));
             });
