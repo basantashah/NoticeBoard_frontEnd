@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="card forms">
+    <img src="~/images/islington.png" class="card-img-top logo" height="50" width="50" />
+    <div class="card-body">
+        <form id="formLogin">
+
+            <div class="row">
+                <label class="centeralign control-label">
+                    Username
+                </label>
+                <input class="centeralign form-control" name="email" type="text" />
+            </div>
+            <div class="row">
+                <label class="centeralign control-label">
+                    Password
+                </label>
+                <input class="centeralign form-control" name="password" type="password" />
+            </div>
+
+            <div class="row" style="margin-top:5%;">
+                <button class="btn btn-primary centerContent" type="button" id="btnLogin">Login</button>
+                <button class="btn btn-danger centerContent" type="reset">Reset</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{ 
+    <script>
+        $.fn.serializeObject = function () {
+            var o = {};
+            var a = this.serializeArray();
+            $.each(a, function () {
+                if (o[this.name]) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
+                    }
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
+        $(document).ready(function () {
+            $("#btnLogin").on("click", function () {
+                var formdata = $("#formLogin").serializeObject();
+                $.ajax({
+                    url: "http://localhost:8000/api/user/login",
+                    type: "POST",
+                    dataType: 'json',
+                    data: JSON.stringify(formdata)
+
+                }).done(function (data, e) {
+                    //var dat = JSON.parse(data);
+                    if (data.status == true) {
+                        window.localStorage.setItem("notice_token", data.account.token);
+                        window.location = "@Url.Action("Loggedin","Home")";
+                    }
+                }).fail(function (err) {
+                    alert("Error " + JSON.stringify(err));
+                });
+                //$.getJSON("json/loginResponse.json", function (data) {
+                   
+                  
+                  //       if (data.status == true) {
+                  //      window.localStorage.setItem("notice_token", data.account.token);
+                  //      window.location = "@Url.Action("Loggedin","Home")";
+                  //  }
+
+               // });
+
+            });
+
+        });
+    </script>
+}

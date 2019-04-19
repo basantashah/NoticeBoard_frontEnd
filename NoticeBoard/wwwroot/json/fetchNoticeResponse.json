@@ -1,0 +1,101 @@
+{"data": [
+    {
+        "ID": 1,
+        "CreatedAt": "2019-03-13T12:12:47.657114+05:45",
+        "UpdatedAt": "2019-03-13T12:12:47.657114+05:45",
+        "DeletedAt": null,
+        "subject": "About college leave",
+        "content": "this is the notice for new subject",
+        "department": "network security",
+        "urgent": "True",
+        "status": "True",
+        "user_id": 2
+    },
+    {
+        "ID": 2,
+        "CreatedAt": "2019-03-13T12:13:44.464332+05:45",
+        "UpdatedAt": "2019-03-13T12:13:44.464332+05:45",
+        "DeletedAt": null,
+        "subject": "About college leave",
+        "content": "this is the notice for new subject",
+        "department": "network security",
+        "urgent": "True",
+        "status": "True",
+        "user_id": 2
+    },
+    {
+        "ID": 3,
+        "CreatedAt": "2019-03-13T12:13:45.340724+05:45",
+        "UpdatedAt": "2019-03-13T12:13:45.340724+05:45",
+        "DeletedAt": null,
+        "subject": "About college leave",
+        "content": "this is the notice for new subject",
+        "department": "network security",
+        "urgent": "True",
+        "status": "True",
+        "user_id": 2
+    },
+    {
+        "ID": 4,
+        "CreatedAt": "2019-03-13T12:13:45.761112+05:45",
+        "UpdatedAt": "2019-03-13T12:13:45.761112+05:45",
+        "DeletedAt": null,
+        "subject": "About college leave",
+        "content": "this is the notice for new subject",
+        "department": "network security",
+        "urgent": "True",
+        "status": "True",
+        "user_id": 2
+    },
+    {
+        "ID": 5,
+        "CreatedAt": "2019-03-13T12:13:46.021415+05:45",
+        "UpdatedAt": "2019-03-13T12:13:46.021415+05:45",
+        "DeletedAt": null,
+        "subject": "About college leave",
+        "content": "this is the notice for new subject",
+        "department": "network security",
+        "urgent": "True",
+        "status": "True",
+        "user_id": 2
+    },
+    {
+        "ID": 6,
+        "CreatedAt": "2019-03-13T12:13:46.302858+05:45",
+        "UpdatedAt": "2019-03-13T12:13:46.302858+05:45",
+        "DeletedAt": null,
+        "subject": "About college leave",
+        "content": "this is the notice for new subject",
+        "department": "network security",
+        "urgent": "True",
+        "status": "True",
+        "user_id": 2
+    },
+    {
+        "ID": 7,
+        "CreatedAt": "2019-03-13T12:13:46.539688+05:45",
+        "UpdatedAt": "2019-03-13T12:13:46.539688+05:45",
+        "DeletedAt": null,
+        "subject": "About college leave",
+        "content": "this is the notice for new subject",
+        "department": "network security",
+        "urgent": "True",
+        "status": "True",
+        "user_id": 2
+    },
+    {
+        "ID": 8,
+        "CreatedAt": "2019-03-13T12:13:46.858735+05:45",
+        "UpdatedAt": "2019-03-13T12:13:46.858735+05:45",
+        "DeletedAt": null,
+        "subject": "About college leave",
+        "content": "this is the notice for new subject",
+        "department": "network security",
+        "urgent": "True",
+        "status": "True",
+        "user_id": 2
+    }
+],
+"message": "success",
+"status": true
+}

@@ -1,0 +1,16 @@
+{
+    "message": "success",
+    "notice": {
+        "ID": 9,
+        "CreatedAt": "2019-03-27T19:48:30.227949+05:45",
+        "UpdatedAt": "2019-03-27T19:48:30.227949+05:45",
+        "DeletedAt": null,
+        "subject": "New routing published",
+        "content": "Please follow the new routing published in website",
+        "department": "RTE department",
+        "urgent": "TRUE",
+        "status": "TRUE",
+        "user_id": 5
+    },
+    "status": true
+}

@@ -1,0 +1,13 @@
+{
+    "account": {
+        "ID": 5,
+        "CreatedAt": "2019-03-27T19:43:10.096149+05:45",
+        "UpdatedAt": "2019-03-27T19:43:10.096149+05:45",
+        "DeletedAt": null,
+        "email": "chanda.sah@test.net",
+        "password": "",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOjV9.zbWj1GsAa7O2-dHkgp1bdkLE8rr4LzL0FtiahgPGxpI"
+    },
+    "message": "Account has been created",
+    "status": true
+}

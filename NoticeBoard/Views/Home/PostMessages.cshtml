@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewData["Title"] = "PostMessages";
+}
+<div class="row">
+    <img src="~/images/islington.png" class="alignright" height="50" width="50" />
+</div>
+<div class="container">
+
+<div class="row">
+  
+   
+        <div class="col">
+            <label>Notice Type</label>
+        </div>
+        <div class="col">
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Notice Type
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Notice</a>
+                    <a class="dropdown-item" href="#">Messages</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <label>Urgent</label>
+        </div>
+        <div class="col">
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Urgent
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Low</a>
+                    <a class="dropdown-item" href="#">Normal</a>
+                    <a class="dropdown-item" href="#">High</a>
+                </div>
+            </div>
+        </div>
+
+   
+        <div class="col-lg-12">
+            <div class="col-lg-6">
+                <label>Date</label>
+                <input type="date" />
+            </div>
+            <div class="col-lg-6">
+                <label>Urgent</label>
+                <select>
+                    <option value="Notice">Notice</option>
+                    <option value="Message">Message</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+    var token = window.localStorage.getItem("notice_token");
+    if (token == null) {
+        window.location = "@Url.Action("Index","Home")";
+    }
+    $(document).ready(function () {
+
+
+    });
+    </script>
+}
+

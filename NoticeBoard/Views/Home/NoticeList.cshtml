@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "NoticeList";
+}
+
+<div class="row">
+    <img src="~/images/islington.png" class="alignright" height="50" width="50" />
+</div>
+<div class="row" id="noticeList">
+
+    
+</div>
+
+
+@section Scripts
+{
+    <script>
+        var da;
+        $(document).ready(function () {
+          var token = window.localStorage.getItem("notice_token");
+          console.log(token)
+            if (token == null) {
+                window.location = "@Url.Action("Index","Home")";
+            }
+            var noticeList = $("#noticeList")
+            $.ajax({
+                url: "http://localhost:8000/api/notice/fetch",
+                 beforeSend : function(req) {
+                     req.setRequestHeader('Access-Control-Allow-Origin','*');
+                     req.setRequestHeader('Access-Control-Allow-Headers','*');
+        req.setRequestHeader('Authorization', "Bearer "+token);
+    },
+                type: 'get',
+                dataType: 'json',
+                crossDomain: true,
+            }).done(function (data) {
+                console.log(data);
+                da = data;
+                data.data.forEach(function (a, b) {
+                    var str = "<div class=\"col-lg-3 col-md-4 col-sm-6\" style=\"margin-bottom:1%;\">" +
+                        "<div class=\"card\">                                                                                                                  " +
+                        "    <div class=\"card-body\">                                                                                                         " +
+                        "        <h6 class=\"card-title right\">" + a.CreatedAt + "</h5>" +
+                        "        <h5 class=\"card-subtitle mb-2 text-muted\">" + a.subject + "</h6>                                                                " +
+                        "        <p class=\"card-text\">" + a.content + "</p>     " +
+                        "        <div  class=\"card-link\">" + a.department + "</a>                                                                               " +
+                        "    </div>                                                                                                                            " +
+                        "    </div>                                                                                                                            " +
+                        "</div>"
+                    noticeList.append($(str));
+                });
+            }).fail(function(err){
+                console.log(err);
+            });
+            //$.getJSON("/json/fetchNoticeResponse.json", function (data) {
+            //    console.log(data);
+            //    da = data;
+            //    data.data.forEach(function (a, b) {
+
+            //        var str = "<div class=\"col-lg-3 col-md-4 col-sm-6\" style=\"margin-bottom:1%;\">" +
+            //            "<div class=\"card\"> " +
+            //            "    <div class=\"card-body\"> " +
+            //            "        <h6 class=\"card-title right\">" + a.CreatedAt + "</h5>" +
+            //            "        <h5 class=\"card-subtitle mb-2 text-muted\">" + a.subject + "</h6>" +
+            //            "        <p class=\"card-text\">" + a.content + "</p>" +
+            //            "        <div  class=\"card-link\">" + a.department + "</a>" +
+            //            "    </div>" +
+            //            "    </div>" +
+            //            "</div>";
+            //        noticeList.append($(str));
+            //    });
+            //});
+         });
+    </script>
+}
