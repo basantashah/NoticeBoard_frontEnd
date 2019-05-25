@@ -18,12 +18,10 @@ class LoginPage extends Component {
       normal: [],
       showImportant: false,
       showNormal: false,
-      data: [
-       
-      ]
+      data: []
     };
     // this.handleChange = this.handleChange.bind(this)
-    this.getBrowseData = this.getBrowseData.bind(this)
+    this.getBrowseData = this.getBrowseData.bind(this);
   }
   handleChange = (key, value) => {
     console.log(key, value);
@@ -47,8 +45,8 @@ class LoginPage extends Component {
       }
     });
   };
-getBrowseData = async()=>{
-  const cookies = new Cookies();
+  getBrowseData = async () => {
+    const cookies = new Cookies();
     const token = cookies.get("token");
     try {
       const res = await fetch(config.notice, {
@@ -72,14 +70,13 @@ getBrowseData = async()=>{
     } catch (e) {
       console.log(e);
     }
-}
-  componentDidMount = async () => {
-    this.updateNotice = setInterval(() => this.getBrowseData(), 1000);
-    
   };
-componentWillUnmount = ()=> {
-  clearInterval(this.updateNotice);
-}
+  componentDidMount = async () => {
+    this.updateNotice = setInterval(() => this.getBrowseData(), 5000);
+  };
+  componentWillUnmount = () => {
+    clearInterval(this.updateNotice);
+  };
   urgentFormatter = item => {
     if (item.type == "application") {
       return (
@@ -91,7 +88,7 @@ componentWillUnmount = ()=> {
                 alt="important"
                 height="30"
                 width="30"
-                style={{ marginTop: -15, marginRight: -15 }}
+                style={{ marginTop: -15, marginRight: -15, marginLeft: -15 }}
               />
             </div>
             <div style={{ padding: 10 }}>
@@ -174,14 +171,14 @@ componentWillUnmount = ()=> {
       <div>
         <NavBar />
 
-        <div class="row" style={{ margin:5 }}>
+        <div class="row" style={{ margin: 5 }}>
           {this.state.data &&
             this.state.data.map((item, index) => {
               if (item.urgent == true) return this.urgentFormatter(item);
             })}
         </div>
 
-        <div class="row" style={{ margin:5 }}>
+        <div class="row" style={{ margin: 5 }}>
           {this.state.data &&
             this.state.data.map((item, index) => {
               if (item.urgent == false) return this.normalFormatter(item);
@@ -193,4 +190,3 @@ componentWillUnmount = ()=> {
 }
 
 export default LoginPage;
-
