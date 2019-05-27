@@ -78,9 +78,14 @@ class LoginPage extends Component {
     clearInterval(this.updateNotice);
   };
   urgentFormatter = item => {
-    if (item.type == "application") {
+    let today = moment(item.schedule).isBefore(moment(), 'day')||moment(item.schedule).isSame(moment(),'days') ;
+    let expiry = moment(moment(),'day').isBefore(item.expiry)
+    console.log("today",today)
+    console.log("Expiry",expiry)
+    console.log("today and expiry",today && expiry)
+    if (item.type == "application" && today && expiry) {
       return (
-        <div class="card-wrapper">
+        <div class="card-wrapper" key={item.id}>
           <div class="mainRectangle">
             <div class="star">
               <img
@@ -94,7 +99,7 @@ class LoginPage extends Component {
             <div style={{ padding: 10 }}>
               <div class="rectangleTitle">{item.title}</div>
               <div class="rectangleTime">
-                {moment(item.CreatedAt).format("MMMM Do YYYY")}
+                {moment(item.schedule).format("MMMM Do YYYY")}
               </div>
               <div class="rectangleSubject">{item.subject}</div>
               <div class="rectangleBody">{item.content}</div>
@@ -104,8 +109,9 @@ class LoginPage extends Component {
         </div>
       );
     } else {
+      if(today && expiry){
       return (
-        <div class="card-wrapper">
+        <div class="card-wrapper" key={item.id}>
           <div class="noticeRectangle">
             <div class="star">
               <img
@@ -119,7 +125,7 @@ class LoginPage extends Component {
             <div style={{ padding: 10 }}>
               <div class="noticeTitle">{item.title}</div>
               <div class="noticeTime">
-                {moment(item.CreatedAt).format("MMMM Do YYYY")}
+                {moment(item.schedule).format("MMMM Do YYYY")}
               </div>
               <div class="noticeSubject">{item.subject}</div>
               <div class="noticeBody">{item.content}</div>
@@ -128,33 +134,39 @@ class LoginPage extends Component {
           </div>
         </div>
       );
+      }
     }
   };
   normalFormatter = item => {
-    if (item.type == "application") {
+    let today = moment(item.schedule).isBefore(moment(), 'day')||moment(item.schedule).isSame(moment(),'days') ;
+    let check = moment(item.schedule)
+    console.log('today test',today)
+    let expiry = moment(moment(),'day').isBefore(item.expiry)
+    if (item.type == "application" && today && expiry ) {
       return (
-        <div class="card-wrapper">
+        <div class="card-wrapper" key={item.id}>
           <div class="mainRectangle">
             <div style={{ padding: 10 }}>
               <div class="rectangleTitle">{item.title}</div>
               <div class="rectangleTime">
-                {moment(item.CreatedAt).format("MMMM Do YYYY")}
+                {moment(item.schedule).format("MMMM Do YYYY")}
               </div>
               <div class="rectangleSubject">{item.subject}</div>
               <div class="rectangleBody">{item.content}</div>
               <div class="rectangleDepart">{item.department}</div>
             </div>
           </div>
-        </div>
+        </div> 
       );
     } else {
+      if(today && expiry ){
       return (
-        <div class="card-wrapper">
+        <div class="card-wrapper" key={item.id}>
           <div class="noticeRectangle">
             <div style={{ padding: 10 }}>
               <div class="noticeTitle">{item.title}</div>
               <div class="noticeTime">
-                {moment(item.CreatedAt).format("MMMM Do YYYY")}
+                {moment(item.schedule).format("MMMM Do YYYY")}
               </div>
               <div class="noticeSubject">{item.subject}</div>
               <div class="noticeBody">{item.content}</div>
@@ -163,6 +175,7 @@ class LoginPage extends Component {
           </div>
         </div>
       );
+      }
     }
   };
 
